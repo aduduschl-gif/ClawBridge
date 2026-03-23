@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { AGENTS, PRIORITIES, PRIORITY_ICONS } from '@/lib/agents';
 
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY || 'demo';
+
 interface DuplicateTicket {
   id: string;
   title: string;
@@ -59,7 +61,7 @@ export default function TicketForm({ onClose, onCreated }: Props) {
     setSubmitting(true);
     setError('');
     try {
-      const res = await fetch('/api/tickets?key=${API_KEY}', {
+      const res = await fetch(`/api/tickets?key=${API_KEY}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Agent-Name': 'human' },
         body: JSON.stringify({

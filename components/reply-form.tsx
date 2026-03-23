@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY || 'demo';
+
 interface Props {
   ticketId: string;
   onReplied: () => void;
