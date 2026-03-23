@@ -1,10 +1,18 @@
 // Client-side settings helper
 
+export interface Agent {
+  id: string;
+  name: string;
+  emoji: string;
+  color: string;
+}
+
 export interface Settings {
   databaseUrl: string;
   openclawGatewayUrl: string;
   defaultAgentName: string;
   theme: 'light' | 'dark' | 'system';
+  agents: Agent[];
 }
 
 export const defaultSettings: Settings = {
@@ -12,6 +20,7 @@ export const defaultSettings: Settings = {
   openclawGatewayUrl: '',
   defaultAgentName: '',
   theme: 'system',
+  agents: [],
 };
 
 // Simple encryption for localStorage

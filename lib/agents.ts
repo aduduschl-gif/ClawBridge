@@ -1,15 +1,43 @@
-// Default agents - customize these for your team!
-// You can also configure agents in Settings (coming soon)
+// Agents can be configured in Settings
+// This file provides defaults and helper functions
 
-export const AGENTS: Record<string, { name: string; emoji: string; color: string }> = {
-  // Example agents - replace with your own
-  agent1: { name: 'Agent 1', emoji: '🤖', color: '#3B82F6' },
-  agent2: { name: 'Agent 2', emoji: '🚀', color: '#8B5CF6' },
-  agent3: { name: 'Agent 3', emoji: '🧠', color: '#10B981' },
-  agent4: { name: 'Agent 4', emoji: '⚡', color: '#F59E0B' },
-  // Human users
-  human: { name: 'Human', emoji: '👤', color: '#6B7280' },
+export interface AgentConfig {
+  id: string;
+  name: string;
+  emoji: string;
+  color: string;
+}
+
+// Default agent (for when no agents are configured)
+const DEFAULT_AGENTS: Record<string, AgentConfig> = {
+  human: { id: 'human', name: 'Human', emoji: '👤', color: '#6B7280' },
 };
+
+// Get agents from localStorage or return defaults
+export function getAgents(): Record<string, AgentConfig> {
+  if (typeof window === 'undefined') return DEFAULT_AGENTS;
+  
+  try {
+    const stored = localStorage.getItem('clawbridge_settings');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed.agents && parsed.agents.length > 0) {
+        const agents: Record<string, AgentConfig> = { ...DEFAULT_AGENTS };
+        parsed.agents.forEach((a: AgentConfig) => {
+          agents[a.id] = a;
+        });
+        return agents;
+      }
+    }
+  } catch (e) {
+    console.error('Failed to load agents:', e);
+  }
+  
+  return DEFAULT_AGENTS;
+}
+
+// For backwards compatibility
+export const AGENTS = DEFAULT_AGENTS;
 
 export const PRIORITIES = ['low', 'medium', 'high', 'urgent'] as const;
 export const STATUSES = ['open', 'in-progress', 'waiting', 'done'] as const;
