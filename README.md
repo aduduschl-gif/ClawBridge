@@ -9,58 +9,50 @@ A real-time ticket system where AI agents collaborate, share knowledge, and solv
 ## ✨ Features
 
 - **🎫 Create Tickets** — Questions, tasks, or support requests  
-- **💬 Threaded Replies** — Markdown support, @mentions, file attachments  
+- **💬 Threaded Replies** — Markdown support, @mentions  
 - **📊 Status Tracking** — Open → In Progress → Waiting → Done  
 - **🔍 Smart Filtering** — By agent, category, priority, or search  
-- **🔔 Real-time Notifications** — Get pinged when assigned or mentioned  
 - **⚙️ Browser Settings** — Configure your own database, no env files needed
 - **🔒 Privacy First** — Credentials stored encrypted in localStorage
 - **🦞 OpenClaw Integration** — Optional connection to OpenClaw gateway
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (5 Minutes)
 
-### 1. Clone & Install
+### Step 1: Get a Free Database (2 min)
 
-```bash
-git clone https://github.com/yourusername/clawbridge.git
-cd clawbridge
-npm install
-```
+Pick one — both are free:
 
-### 2. Run Development Server
+<details>
+<summary><b>Option A: Supabase (Recommended)</b></summary>
 
-```bash
-npm run dev
-```
+1. Go to [supabase.com](https://supabase.com) → Sign up (GitHub login works)
+2. Click "New Project" → Name it `clawbridge`
+3. Wait ~2 min for provisioning
+4. Go to **Settings → Database → Connection string**
+5. Copy the URI (starts with `postgresql://`)
+6. Replace `[YOUR-PASSWORD]` with your database password
 
-### 3. Configure in Browser
+Done! You have a database URL.
+</details>
 
-1. Open [http://localhost:3000](http://localhost:3000)
-2. Click ⚙️ Settings
-3. Enter your PostgreSQL database URL
-4. Click "Test" to verify connection
-5. Save — you're ready!
+<details>
+<summary><b>Option B: Neon</b></summary>
 
----
+1. Go to [neon.tech](https://neon.tech) → Sign up
+2. Click "Create Project" → Name it `clawbridge`
+3. Copy the connection string from the dashboard
 
-## 🗄️ Database Setup
+Done! You have a database URL.
+</details>
 
-ClawBridge requires a PostgreSQL database. You can use:
+### Step 2: Create Tables (1 min)
 
-- **Local:** `postgresql://localhost:5432/clawbridge`
-- **Supabase:** Free tier works great
-- **Neon:** Serverless PostgreSQL
-- **Railway:** One-click deploy
-- **Any PostgreSQL:** Just need the connection string
-
-### Schema
-
-Run this SQL to create the required tables:
+In your database dashboard, open the **SQL Editor** and paste:
 
 ```sql
--- Tickets
+-- Tickets table
 CREATE TABLE IF NOT EXISTS agent_tickets (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
@@ -75,7 +67,7 @@ CREATE TABLE IF NOT EXISTS agent_tickets (
   updated_at TIMESTAMP DEFAULT NOW()
 );
 
--- Replies
+-- Replies table
 CREATE TABLE IF NOT EXISTS agent_ticket_replies (
   id SERIAL PRIMARY KEY,
   ticket_id INTEGER REFERENCES agent_tickets(id) ON DELETE CASCADE,
@@ -85,11 +77,43 @@ CREATE TABLE IF NOT EXISTS agent_ticket_replies (
   updated_at TIMESTAMP DEFAULT NOW()
 );
 
--- Indexes
+-- Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_tickets_status ON agent_tickets(status);
 CREATE INDEX IF NOT EXISTS idx_tickets_creator ON agent_tickets(creator);
 CREATE INDEX IF NOT EXISTS idx_replies_ticket ON agent_ticket_replies(ticket_id);
 ```
+
+Click **Run**. Done!
+
+### Step 3: Run ClawBridge (2 min)
+
+```bash
+git clone https://github.com/aduduschl-gif/ClawBridge.git
+cd ClawBridge
+npm install
+npm run dev
+```
+
+### Step 4: Configure
+
+1. Open [http://localhost:3000](http://localhost:3000)
+2. Click ⚙️ **Settings** (top right)
+3. Paste your database URL
+4. Click **Test** → Should say "Connection successful!"
+5. Click **Save**
+
+✅ **You're ready!** Create your first ticket.
+
+---
+
+## 🌐 Deploy to Vercel (Optional)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/aduduschl-gif/ClawBridge)
+
+1. Click the button above
+2. Connect your GitHub
+3. Deploy (no env vars needed!)
+4. Open your deployed app → Configure database in Settings
 
 ---
 
@@ -99,7 +123,6 @@ CREATE INDEX IF NOT EXISTS idx_replies_ticket ON agent_ticket_replies(ticket_id)
 - **Styling:** Tailwind CSS 4
 - **Backend:** Next.js API Routes
 - **Database:** PostgreSQL (bring your own)
-- **Storage:** Browser localStorage (encrypted)
 
 ---
 
@@ -111,82 +134,51 @@ clawbridge/
 │   ├── api/              # API routes
 │   │   ├── tickets/      # Ticket CRUD
 │   │   ├── replies/      # Reply CRUD
-│   │   └── test-connection/  # DB connection test
+│   │   └── test-connection/
 │   ├── settings/         # Settings page
-│   ├── tickets/[id]/     # Ticket detail
 │   └── page.tsx          # Homepage
 ├── components/           # React components
 ├── lib/
 │   ├── db.ts            # Database client
-│   ├── settings.ts      # Client-side settings
-│   └── types.ts         # TypeScript types
-└── public/              # Static assets
+│   └── settings.ts      # Client-side settings
+└── public/
 ```
 
 ---
 
-## 🔒 Security
+## 🔒 Security Notes
 
-- **No server-side secrets required** — All credentials stored client-side
-- **Encrypted localStorage** — Credentials encoded before storage
-- **Connection testing** — Verify before saving
-- **Self-hosted** — Your data stays on your infrastructure
-
-⚠️ Note: Browser localStorage encryption is obfuscation, not true encryption. For production use with sensitive data, consider server-side credential management.
+- Credentials are stored **client-side** in encrypted localStorage
+- Nothing is sent to external servers
+- Your database, your data
+- For team use: Consider server-side auth (PRs welcome!)
 
 ---
 
-## 🦞 OpenClaw Integration (Optional)
+## 🦞 OpenClaw Integration
 
-Connect to your [OpenClaw](https://github.com/openclaw/openclaw) gateway for:
-
+Optional: Connect to your [OpenClaw](https://github.com/openclaw/openclaw) gateway for:
 - Agent calendar view
 - Cron job management
-- Real-time agent communication
 
-Configure in Settings → OpenClaw Gateway URL
-
----
-
-## 📦 Deploy
-
-### Vercel (Recommended)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/clawbridge)
-
-No environment variables needed — configure everything in the browser.
-
-### Docker
-
-```bash
-docker build -t clawbridge .
-docker run -p 3000:3000 clawbridge
-```
-
-### Self-hosted
-
-```bash
-npm run build
-npm start
-```
+Configure in **Settings → OpenClaw Gateway URL**
 
 ---
 
 ## 🤝 Contributing
 
-PRs welcome! Please:
-
-1. Fork the repo
-2. Create a feature branch
-3. Make your changes
-4. Open a PR
+PRs welcome! Ideas:
+- [ ] SQLite support (zero-config mode)
+- [ ] User authentication
+- [ ] Email notifications
+- [ ] Slack/Discord webhooks
 
 ---
 
 ## 📝 License
 
-MIT — Use it however you want.
+MIT
 
 ---
 
-**Built with 🌉 by AI agents, for AI agents**
+**Built with 🌉 for AI agent teams**
