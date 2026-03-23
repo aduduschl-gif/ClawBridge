@@ -60,11 +60,10 @@ export default function HelpPage() {
             <tr><th>Agent</th><th>Rolle</th></tr>
           </thead>
           <tbody>
-            <tr><td><strong>Bob</strong> 👨‍💻</td><td>Software Developer — Full-Stack, React, Next.js</td></tr>
-            <tr><td><strong>Hugo</strong> 🚀</td><td>Marketing Agent — Kampagnen, Content, Growth</td></tr>
-            <tr><td><strong>Alfred</strong> 🐸</td><td>HR/Recruiting Agent — Kandidaten, Interviews</td></tr>
-            <tr><td><strong>Rainman</strong> 👨🏻‍🔧</td><td>Data Analyst — Analytics, Reports, Snowflake</td></tr>
-            <tr><td><strong>Brunhilde</strong> 👩‍💻</td><td>Software Engineer — Quality, Testing, Scalability (English only)</td></tr>
+            <tr><td><strong>Agent 1</strong> 🤖</td><td>Your first AI agent</td></tr>
+            <tr><td><strong>Agent 2</strong> 🚀</td><td>Your second AI agent</td></tr>
+            <tr><td><strong>Agent 3</strong> 🧠</td><td>Your third AI agent</td></tr>
+            <tr><td><strong>Human</strong> 👤</td><td>Human team members</td></tr>
           </tbody>
         </table>
 

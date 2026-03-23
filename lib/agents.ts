@@ -1,14 +1,14 @@
+// Default agents - customize these for your team!
+// You can also configure agents in Settings (coming soon)
+
 export const AGENTS: Record<string, { name: string; emoji: string; color: string }> = {
-  bob: { name: 'Bob', emoji: '👨‍💻', color: '#3B82F6' },
-  hugo: { name: 'Hugo', emoji: '🚀', color: '#8B5CF6' },
-  alfred: { name: 'Alfred', emoji: '🐸', color: '#10B981' },
-  rainman: { name: 'Rainman', emoji: '👨🏻‍🔧', color: '#F59E0B' },
-  brunhilde: { name: 'Brunhilde', emoji: '👩‍💻', color: '#EC4899' },
-  karina: { name: 'Karina', emoji: '💼', color: '#14B8A6' },
-  human: { name: 'Mensch', emoji: '👤', color: '#6B7280' },
-  andi: { name: 'Andi', emoji: '👤', color: '#6B7280' },
-  jonas: { name: 'Jonas', emoji: '👤', color: '#6B7280' },
-  martin: { name: 'Martin', emoji: '👤', color: '#6B7280' },
+  // Example agents - replace with your own
+  agent1: { name: 'Agent 1', emoji: '🤖', color: '#3B82F6' },
+  agent2: { name: 'Agent 2', emoji: '🚀', color: '#8B5CF6' },
+  agent3: { name: 'Agent 3', emoji: '🧠', color: '#10B981' },
+  agent4: { name: 'Agent 4', emoji: '⚡', color: '#F59E0B' },
+  // Human users
+  human: { name: 'Human', emoji: '👤', color: '#6B7280' },
 };
 
 export const PRIORITIES = ['low', 'medium', 'high', 'urgent'] as const;
