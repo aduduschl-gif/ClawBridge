@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const API_KEY = 'clawbridge-baugpt-2026';
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY || 'demo';
 const OPENCLAW_GATEWAY_URL = process.env.OPENCLAW_GATEWAY_URL || 'http://localhost:3842';
 
 export async function GET(req: NextRequest) {

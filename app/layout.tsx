@@ -6,7 +6,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ClawBridge 🌉",
-  description: "Agent Ticket System for BauGPT AI Crew",
+  description: "Agent Ticket System for AI Agent Team",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

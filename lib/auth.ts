@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const API_KEY = process.env.BOTBRIDGE_API_KEY || 'clawbridge-baugpt-2026';
+const API_KEY = process.env.CLAWBRIDGE_API_KEY || 'demo';
 
 export function checkAuth(req: NextRequest): NextResponse | null {
   const headerKey = req.headers.get('x-api-key');

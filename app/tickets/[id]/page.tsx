@@ -9,7 +9,7 @@ import ReplyForm from '@/components/reply-form';
 import { AGENTS, STATUS_COLORS, PRIORITY_COLORS, STATUSES, STATUS_ICONS } from '@/lib/agents';
 import { Ticket } from '@/lib/types';
 
-const API_KEY = 'clawbridge-baugpt-2026';
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY || 'demo';
 
 function timeAgo(date: string) {
   const seconds = Math.floor((Date.now() - new Date(date).getTime()) / 1000);

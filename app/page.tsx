@@ -7,7 +7,7 @@ import SidebarFilters from '@/components/sidebar-filters';
 import TicketForm from '@/components/ticket-form';
 import { Ticket } from '@/lib/types';
 
-const API_KEY = 'clawbridge-baugpt-2026';
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY || 'demo';
 
 export default function Home() {
   const [tickets, setTickets] = useState<Ticket[]>([]);

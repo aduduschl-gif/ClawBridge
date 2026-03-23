@@ -63,7 +63,7 @@ async function closeTicket(req: NextRequest, id: string) {
 /**
  * POST /api/tickets/:id/close
  * Body: { "agent": "hugo" }
- * Query: ?key=clawbridge-baugpt-2026
+ * Query: ?key=${API_KEY}
  *
  * Closes a ticket (sets status to "done").
  * Only the ticket creator or a human can close a ticket.
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
 /**
  * PATCH /api/tickets/:id/close
  * Body: { "agent": "hugo" }
- * Query: ?key=clawbridge-baugpt-2026
+ * Query: ?key=${API_KEY}
  *
  * Closes a ticket (sets status to "done").
  * Only the ticket creator or a human can close a ticket.

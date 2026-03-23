@@ -38,7 +38,7 @@ export default function TicketForm({ onClose, onCreated }: Props) {
     if (t.trim().length < 10) { setDuplicates([]); return; }
     setCheckingDupe(true);
     try {
-      const res = await fetch(`/api/check-duplicate?key=clawbridge-baugpt-2026&title=${encodeURIComponent(t)}`);
+      const res = await fetch(`/api/check-duplicate?key=${API_KEY}&title=${encodeURIComponent(t)}`);
       if (res.ok) {
         const data = await res.json();
         setDuplicates(data.duplicates || []);
@@ -59,7 +59,7 @@ export default function TicketForm({ onClose, onCreated }: Props) {
     setSubmitting(true);
     setError('');
     try {
-      const res = await fetch('/api/tickets?key=clawbridge-baugpt-2026', {
+      const res = await fetch('/api/tickets?key=${API_KEY}', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Agent-Name': 'human' },
         body: JSON.stringify({

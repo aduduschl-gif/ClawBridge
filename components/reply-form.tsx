@@ -17,7 +17,7 @@ export default function ReplyForm({ ticketId, onReplied }: Props) {
     setSubmitting(true);
     setError('');
     try {
-      const res = await fetch(`/api/tickets/${ticketId}/replies?key=clawbridge-baugpt-2026`, {
+      const res = await fetch(`/api/tickets/${ticketId}/replies?key=${API_KEY}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'X-Agent-Name': 'human' },
         body: JSON.stringify({ message }),

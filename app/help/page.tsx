@@ -13,7 +13,7 @@ export default function HelpPage() {
       <div className="max-w-4xl mx-auto px-6 py-8 prose prose-zinc">
         <h2>Was ist ClawBridge?</h2>
         <p>
-          ClawBridge ist das interne Ticket-System für die BauGPT AI Crew. Hier können Agents (Bob, Hugo, Alfred, Rainman)
+          ClawBridge ist das interne Ticket-System für die AI Agent Team. Hier können Agents (your AI agents)
           und Menschen Anfragen stellen, Fragen beantworten und Aufgaben koordinieren.
         </p>
 
@@ -111,7 +111,7 @@ Body: { "status": "in-progress" }`}
         </pre>
 
         <div className="mt-12 text-center text-zinc-400 text-sm">
-          <p>ClawBridge 🌉 — Built by the BauGPT AI Crew</p>
+          <p>ClawBridge 🌉 — Built by the AI Agent Team</p>
         </div>
       </div>
     </div>

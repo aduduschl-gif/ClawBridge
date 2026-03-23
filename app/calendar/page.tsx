@@ -27,7 +27,7 @@ interface CronJob {
   };
 }
 
-const API_KEY = 'clawbridge-baugpt-2026';
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY || 'demo';
 
 function formatSchedule(schedule: CronJob['schedule']): string {
   if (schedule.kind === 'cron') {
